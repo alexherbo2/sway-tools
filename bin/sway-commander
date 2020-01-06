@@ -1,0 +1,20 @@
+#!/bin/sh
+
+state=$(mktemp -d)
+trap 'rm -Rf "$state"' EXIT
+
+if test -t 0; then
+  message='focus'
+else
+  message=$(cat)
+fi
+
+sway-get-windows-as-hash > "$state/entries.json"
+
+jq --raw-output 'keys[]' "$state/entries.json" |
+"$@" |
+jq --raw-input --raw-output --slurpfile entries "$state/entries.json" --arg message "$message" '
+  $entries[0][.] | @sh "
+    swaymsg [con_id=\(.window.id)] \($message)
+  "
+' | sh
