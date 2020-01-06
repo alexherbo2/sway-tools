@@ -1,7 +1,9 @@
 #!/bin/sh
 
 swaymsg -t get_tree | jq '
-  (.. | select(.type? == "workspace")) as $workspace |
-  ($workspace | .. | select(.pid?)) as $window |
-  { $window, $workspace }
+  [
+    (.. | select(.type? == "workspace")) as $workspace |
+    ($workspace | .. | select(.pid?)) as $window |
+    { $window, $workspace }
+  ]
 '

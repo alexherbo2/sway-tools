@@ -2,6 +2,7 @@
 
 sway-get-windows-with-workspace | jq '
   [
+    .[] |
     {
       key: "[\(.workspace.name)] [\(.window.name)] [\(.window.marks | join(" "))] [\(.window.id)]",
       value: .
