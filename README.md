@@ -26,6 +26,17 @@ sway-commander rofi -dmenu -i -p 'Search window'
 echo move workspace current, focus | sway-commander rofi -dmenu -i -p 'Bring window'
 ```
 
+## Configuration
+
+`~/.config/sway/config`
+
+```
+bindsym $mod+slash exec sway-commander rofi -dmenu -i -p 'Search window'
+bindsym $mod+Shift+slash exec echo move workspace current, focus | sway-commander rofi -dmenu -i -p 'Bring window'
+```
+
+**Note**: Uses [Rofi] for the filtering.
+
 ## Commands
 
 - [`sway-get-focused-window`](bin/sway-get-focused-window)
