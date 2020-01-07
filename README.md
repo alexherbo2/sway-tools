@@ -1,5 +1,7 @@
 # [Sway] tools
 
+[![IRC](https://img.shields.io/badge/IRC-%23sway-blue)](https://webchat.freenode.net/#sway)
+
 > Collection of scripts for [Sway].
 
 ## Dependencies
