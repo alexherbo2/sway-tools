@@ -1,8 +1,17 @@
 #!/bin/sh
 
+# Name: Sway commander
+# Description: Send messages to windows
+# Usage: [message = focus] | sway-commander [filter = cat]
+# Example: echo focus | sway-commander fzf
+
+# State
 state=$(mktemp -d)
 trap 'rm -Rf "$state"' EXIT
 
+# Parameters
+# Message: `focus` (stdin)
+# Filter: `cat` (arguments)
 if test -t 0; then
   message='focus'
 else
@@ -13,8 +22,10 @@ if test $# -eq 0; then
   set -- cat
 fi
 
+# Store entries
 sway-get-windows-as-hash > "$state/entries.json"
 
+# Run the program
 jq --raw-output 'keys[]' "$state/entries.json" |
 "$@" |
 jq --raw-input --raw-output --slurpfile entries "$state/entries.json" --arg message "$message" '
