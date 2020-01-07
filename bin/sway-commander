@@ -9,6 +9,10 @@ else
   message=$(cat)
 fi
 
+if test $# -eq 0; then
+  set -- cat
+fi
+
 sway-get-windows-as-hash > "$state/entries.json"
 
 jq --raw-output 'keys[]' "$state/entries.json" |
