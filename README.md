@@ -10,9 +10,14 @@
 
 ## Installation
 
-``` sh
-ln -s "$PWD/bin/"* ~/.local/bin
-```
+Add the following files to your path.
+
+- [`sway-get-focused-window`]
+- [`sway-get-windows`]
+- [`sway-get-visible-windows`]
+- [`sway-get-windows-with-workspace`]
+- [`sway-get-windows-as-hash`]
+- [`sway-commander`]
 
 ## Usage
 
@@ -41,13 +46,20 @@ bindsym $mod+Shift+slash exec echo move workspace current, focus | sway-commande
 
 ## Commands
 
-- [`sway-get-focused-window`](bin/sway-get-focused-window)
-- [`sway-get-windows`](bin/sway-get-windows)
-- [`sway-get-visible-windows`](bin/sway-get-visible-windows)
-- [`sway-get-windows-with-workspace`](bin/sway-get-windows-with-workspace)
-- [`sway-get-windows-as-hash`](bin/sway-get-windows-as-hash)
-- `[message = focus]` `|` [`sway-commander`](bin/sway-commander) `[filter = cat]`: Send messages to windows.
+- [`sway-get-focused-window`]
+- [`sway-get-windows`]
+- [`sway-get-visible-windows`]
+- [`sway-get-windows-with-workspace`]
+- [`sway-get-windows-as-hash`]
+- `[message = focus]` `|` [`sway-commander`] `[filter = cat]`: Send messages to windows.
 
 [Sway]: https://swaywm.org
 [jq]: https://stedolan.github.io/jq/
 [Rofi]: https://github.com/davatorium/rofi
+
+[`sway-get-focused-window`]: bin/sway-get-focused-window
+[`sway-get-windows`]: bin/sway-get-windows
+[`sway-get-visible-windows`]: bin/sway-get-visible-windows
+[`sway-get-windows-with-workspace`]: bin/sway-get-windows-with-workspace
+[`sway-get-windows-as-hash`]: bin/sway-get-windows-as-hash
+[`sway-commander`]: bin/sway-commander
