@@ -30,6 +30,6 @@ jq --raw-output 'keys[]' "$state/entries.json" |
 "$@" |
 jq --raw-input --raw-output --slurpfile entries "$state/entries.json" --arg message "$message" '
   $entries[0][.] | @sh "
-    swaymsg [con_id=\(.window.id)] \($message)
+    swaymsg \"[con_id=\(.window.id)]\" \($message)
   "
 ' | sh
