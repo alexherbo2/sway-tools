@@ -21,16 +21,16 @@ Add the following files to your path.
 
 ## Usage
 
-**Example** – Search window with [Rofi]:
+**Example** – Search window with [dmenu]:
 
 ``` sh
-sway-commander rofi -dmenu -i -p 'Search window'
+sway-commander dmenu -l 20 -i -p 'Search window'
 ```
 
-**Example** – Bring window with [Rofi]:
+**Example** – Bring window with [dmenu]:
 
 ``` sh
-echo move workspace current, focus | sway-commander rofi -dmenu -i -p 'Bring window'
+echo move workspace current, focus | sway-commander dmenu -l 20 -i -p 'Bring window'
 ```
 
 ## Configuration
@@ -38,11 +38,11 @@ echo move workspace current, focus | sway-commander rofi -dmenu -i -p 'Bring win
 `~/.config/sway/config`
 
 ```
-bindsym $mod+slash exec sway-commander rofi -dmenu -i -p 'Search window'
-bindsym $mod+Shift+slash exec echo move workspace current, focus | sway-commander rofi -dmenu -i -p 'Bring window'
+bindsym $mod+slash exec sway-commander dmenu -l 20 -i -p 'Search window'
+bindsym $mod+Shift+slash exec echo move workspace current, focus | sway-commander dmenu -l 20 -i -p 'Bring window'
 ```
 
-**Note**: Uses [Rofi] for the filtering.
+**Note**: Uses [dmenu] for the filtering.
 
 ## Commands
 
@@ -55,7 +55,7 @@ bindsym $mod+Shift+slash exec echo move workspace current, focus | sway-commande
 
 [Sway]: https://swaywm.org
 [jq]: https://stedolan.github.io/jq/
-[Rofi]: https://github.com/davatorium/rofi
+[dmenu]: https://tools.suckless.org/dmenu/
 
 [`sway-get-focused-window`]: bin/sway-get-focused-window
 [`sway-get-windows`]: bin/sway-get-windows
