@@ -10,7 +10,7 @@ A collection of scripts for [Sway].
 
 ## Installation
 
-Add the following files to your path.
+Add the following files to your path:
 
 - [`sway-get-focused-window`]
 - [`sway-get-windows`]
