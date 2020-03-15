@@ -10,14 +10,9 @@ A collection of scripts for [Sway].
 
 ## Installation
 
-Add the following files to your path:
-
-- [`sway-get-focused-window`]
-- [`sway-get-windows`]
-- [`sway-get-visible-windows`]
-- [`sway-get-windows-with-workspace`]
-- [`sway-get-windows-as-hash`]
-- [`sway-commander`]
+``` sh
+make install # Install bin into ~/.local/bin
+```
 
 ## Usage
 
