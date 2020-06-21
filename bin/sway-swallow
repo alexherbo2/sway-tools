@@ -1,5 +1,7 @@
 #!/bin/sh
 
-swaymsg split vertical, layout stacking
+swaymsg --quiet split vertical, layout stacking
 "$@"
-swaymsg split horizontal, layout default
+swaymsg --quiet split horizontal, layout default
+# Fix swaymsg error message with default layout.
+true
