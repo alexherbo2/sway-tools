@@ -47,6 +47,7 @@ bindsym $mod+Shift+slash exec echo move workspace current, focus | sway-commande
 - [`sway-get-windows-with-workspace`]
 - [`sway-get-windows-as-hash`]
 - `[message = focus]` `|` [`sway-commander`] `[filter = cat]`: Send messages to windows.
+- [`sway-swallow`] `<command>`
 
 [Sway]: https://swaywm.org
 [jq]: https://stedolan.github.io/jq/
@@ -58,3 +59,4 @@ bindsym $mod+Shift+slash exec echo move workspace current, focus | sway-commande
 [`sway-get-windows-with-workspace`]: bin/sway-get-windows-with-workspace
 [`sway-get-windows-as-hash`]: bin/sway-get-windows-as-hash
 [`sway-commander`]: bin/sway-commander
+[`sway-swallow`]: bin/sway-swallow

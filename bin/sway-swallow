@@ -1,0 +1,5 @@
+#!/bin/sh
+
+swaymsg split vertical, layout stacking
+"$@"
+swaymsg split horizontal, layout default
