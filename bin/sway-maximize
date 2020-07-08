@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# Usage: sway-maximize enable|disable|toggle
+# Description: Makes focused view maximized, non-maximized, or the opposite of what it is now.
+# If no argument is given, it does the same as toggle.
+
+export mode=${1:-toggle}
+
+swaymsg -t get_outputs |
+jq --raw-output '
+  .[] | select(.focused) | @sh "
+    swaymsg \\
+      floating \(env.mode), \\
+      resize set \(.rect.width) \(.rect.height)
+  "
+' | sh
