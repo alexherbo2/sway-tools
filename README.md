@@ -49,6 +49,7 @@ bindsym $mod+Shift+slash exec echo move workspace current, focus | sway-commande
 - `[message = focus]` `|` [`sway-commander`] `[filter = cat]`: Send messages to windows.
 - [`sway-swallow`] `<command>`
 - [`sway-maximize`] `enable|disable|toggle`
+- [`sway-click`]
 
 [Sway]: https://swaywm.org
 [jq]: https://stedolan.github.io/jq/
@@ -62,3 +63,4 @@ bindsym $mod+Shift+slash exec echo move workspace current, focus | sway-commande
 [`sway-commander`]: bin/sway-commander
 [`sway-swallow`]: bin/sway-swallow
 [`sway-maximize`]: bin/sway-maximize
+[`sway-click`]: bin/sway-click

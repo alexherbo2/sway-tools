@@ -1,0 +1,17 @@
+#!/bin/sh
+
+# Usage:
+#
+# sway-click [button = button1] [repeat = 1]
+#
+# Example – Double-click:
+#
+# sway-click button1 2
+
+button=${1:-button1}
+repeat=${2:-1}
+
+for repeat in $(seq "$repeat"); do
+  swaymsg seat '*' cursor press "$button"
+  swaymsg seat '*' cursor release "$button"
+done
