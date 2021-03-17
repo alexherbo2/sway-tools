@@ -19,13 +19,13 @@ make install # Install bin into ~/.local/bin
 **Example** – Search window with [dmenu]:
 
 ``` sh
-sway-commander dmenu -l 20 -i -p 'Search window'
+sway-commander dmenu
 ```
 
 **Example** – Bring window with [dmenu]:
 
 ``` sh
-echo move workspace current, focus | sway-commander dmenu -l 20 -i -p 'Bring window'
+echo move workspace current, focus | sway-commander dmenu
 ```
 
 ## Configuration
@@ -33,8 +33,8 @@ echo move workspace current, focus | sway-commander dmenu -l 20 -i -p 'Bring win
 `~/.config/sway/config`
 
 ```
-bindsym $mod+slash exec sway-commander dmenu -l 20 -i -p 'Search window'
-bindsym $mod+Shift+slash exec echo move workspace current, focus | sway-commander dmenu -l 20 -i -p 'Bring window'
+bindsym $mod+slash exec sway-commander dmenu
+bindsym $mod+Shift+slash exec echo move workspace current, focus | sway-commander dmenu
 ```
 
 **Note**: Uses [dmenu] for the filtering.
