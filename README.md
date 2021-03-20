@@ -50,6 +50,8 @@ bindsym $mod+Shift+slash exec echo move workspace current, focus | sway-commande
 - [`sway-swallow`] `<command>`
 - [`sway-maximize`] `enable|disable|toggle`
 - [`sway-click`]
+- [`sway-workspace-previous`]
+- [`sway-workspace-next`]
 
 [Sway]: https://swaywm.org
 [jq]: https://stedolan.github.io/jq/
@@ -64,3 +66,5 @@ bindsym $mod+Shift+slash exec echo move workspace current, focus | sway-commande
 [`sway-swallow`]: bin/sway-swallow
 [`sway-maximize`]: bin/sway-maximize
 [`sway-click`]: bin/sway-click
+[`sway-workspace-previous`]: bin/sway-workspace-previous
+[`sway-workspace-next`]: bin/sway-workspace-next
