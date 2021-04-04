@@ -1,3 +1,0 @@
-#!/bin/sh
-
-swaymsg -t get_tree | jq '[.. | select(.pid? and .visible?)]'

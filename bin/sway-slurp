@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# Select a region under Sway.
+#
+# Usage:
+#
+# sway-slurp
+#
+# Examples:
+#
+# bindsym Print exec grim -g "$(sway-slurp)"
+#
+# https://wayland.emersion.fr/slurp/
+# https://wayland.emersion.fr/grim/
+
+(swaymsg -t get_tree; swaymsg -t get_outputs) | jq --slurp --raw-output '( .[0] | .. | select(.pid? and .visible?).rect ), ( .[1][].rect ) | "\(.x),\(.y) \(.width)x\(.height)"' | slurp "$@"

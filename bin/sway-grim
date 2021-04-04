@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# Grab images under Sway.
+#
+# Usage:
+#
+# sway-grim
+#
+# Examples:
+#
+# bindsym Print exec sway-grim
+#
+# https://wayland.emersion.fr/grim/
+# https://wayland.emersion.fr/slurp/
+
+grim -g "$(sway-slurp)" "$@"

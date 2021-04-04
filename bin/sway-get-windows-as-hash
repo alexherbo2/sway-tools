@@ -1,11 +1,5 @@
 #!/bin/sh
 
 sway-get-windows-with-workspace | jq '
-  [
-    .[] |
-    {
-      key: "[\(.workspace.name)] [\(.window.name)] [\(.window.marks | join(" "))] [\(.window.id)]",
-      value: .
-    }
-  ] | from_entries
+  map({ key: ([.workspace.name, .window.name, .window.marks[], .window.id] | join("\t")), value: . }) | from_entries
 '

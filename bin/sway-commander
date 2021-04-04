@@ -1,35 +1,31 @@
 #!/bin/sh
 
-# Name: Sway commander
-# Description: Send messages to windows
-# Usage: [message = focus] | sway-commander [filter = cat]
-# Example: echo focus | sway-commander fzf
+# Send messages to windows with a dynamic menu program.
+#
+# Usage:
+#
+# sway-commander [command]
+#
+# Examples:
+#
+# DMENU=fzf sway-commander focus
+#
+# bindsym $mod+slash exec sway-commander
+# bindsym $mod+Shift+slash exec sway-commander move workspace current, focus
 
-# State
-state=$(mktemp -d)
-trap 'rm -Rf "$state"' EXIT
+# Sway command
+[ $# = 0 ] && set -- focus
 
-# Parameters
-# Message: `focus` (stdin)
-# Filter: `cat` (arguments)
-if test -t 0; then
-  message='focus'
-else
-  message=$(cat)
-fi
+# dmenu command
+DMENU=${DMENU:-dmenu}
 
-if test $# -eq 0; then
-  set -- cat
-fi
+sway-get-windows-as-hash > windows.json
+jq --raw-output 'keys[]' windows.json | $DMENU |
 
-# Store entries
-sway-get-windows-as-hash > "$state/entries.json"
+while read key; do
+  export key
+  window_id=$(jq '.[env.key].window.id' windows.json)
+  swaymsg "[con_id=$window_id]" "$@"
+done
 
-# Run the program
-jq --raw-output 'keys[]' "$state/entries.json" |
-"$@" |
-jq --raw-input --raw-output --slurpfile entries "$state/entries.json" --arg message "$message" '
-  $entries[0][.] | @sh "
-    swaymsg \"[con_id=\(.window.id)]\" \($message)
-  "
-' | sh
+rm windows.json

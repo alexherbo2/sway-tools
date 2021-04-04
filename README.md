@@ -1,70 +1,22 @@
 # [Sway] tools
 
-[![IRC](https://img.shields.io/badge/IRC-%23sway-blue)](https://webchat.freenode.net/#sway)
+A collection of — single purpose and self-documented — [scripts] for [Sway].
 
-A collection of scripts for [Sway].
+[Sway]: https://swaywm.org
+[Scripts]: bin
 
 ## Dependencies
 
 - [jq]
 
+[jq]: https://stedolan.github.io/jq/
+
 ## Installation
 
 ``` sh
-make install # Install bin into ~/.local/bin
+make install
 ```
 
 ## Usage
 
-**Example** – Search window with [dmenu]:
-
-``` sh
-sway-commander dmenu
-```
-
-**Example** – Bring window with [dmenu]:
-
-``` sh
-echo move workspace current, focus | sway-commander dmenu
-```
-
-## Configuration
-
-`~/.config/sway/config`
-
-```
-bindsym $mod+slash exec sway-commander dmenu
-bindsym $mod+Shift+slash exec echo move workspace current, focus | sway-commander dmenu
-```
-
-**Note**: Uses [dmenu] for the filtering.
-
-## Commands
-
-- [`sway-get-focused-window`]
-- [`sway-get-windows`]
-- [`sway-get-visible-windows`]
-- [`sway-get-windows-with-workspace`]
-- [`sway-get-windows-as-hash`]
-- `[message = focus]` `|` [`sway-commander`] `[filter = cat]`: Send messages to windows.
-- [`sway-swallow`] `<command>`
-- [`sway-maximize`] `enable|disable|toggle`
-- [`sway-click`]
-- [`sway-workspace-previous`]
-- [`sway-workspace-next`]
-
-[Sway]: https://swaywm.org
-[jq]: https://stedolan.github.io/jq/
-[dmenu]: https://tools.suckless.org/dmenu/
-
-[`sway-get-focused-window`]: bin/sway-get-focused-window
-[`sway-get-windows`]: bin/sway-get-windows
-[`sway-get-visible-windows`]: bin/sway-get-visible-windows
-[`sway-get-windows-with-workspace`]: bin/sway-get-windows-with-workspace
-[`sway-get-windows-as-hash`]: bin/sway-get-windows-as-hash
-[`sway-commander`]: bin/sway-commander
-[`sway-swallow`]: bin/sway-swallow
-[`sway-maximize`]: bin/sway-maximize
-[`sway-click`]: bin/sway-click
-[`sway-workspace-previous`]: bin/sway-workspace-previous
-[`sway-workspace-next`]: bin/sway-workspace-next
+Simply call a command without argument and it will tell you the usage.

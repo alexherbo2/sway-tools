@@ -1,6 +1,6 @@
 install:
-	mkdir -p ~/.local/bin
-	ln -sf "${PWD}"/bin/* ~/.local/bin
+	install -d ~/.local/bin
+	install bin/sway-* ~/.local/bin
 
 uninstall:
 	rm -f ~/.local/bin/sway-*
