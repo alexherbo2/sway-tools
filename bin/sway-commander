@@ -24,7 +24,7 @@ jq --raw-output 'keys[]' windows.json | $DMENU |
 
 while read key; do
   export key
-  jq '.[env.key].window.id' windows.json | xargs -I {} swaymsg "[con_id={}]" "$@"
+  jq '.[env.key].window.id' windows.json | xargs -I {} swaymsg "[con_id={}]" -- "$@"
 done
 
 rm windows.json
