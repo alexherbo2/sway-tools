@@ -19,7 +19,7 @@
 # dmenu command
 DMENU=${DMENU:-dmenu}
 
-sway-get-windows-as-hash > windows.json
+sway-get-window-menu > windows.json
 jq --raw-output 'keys[]' windows.json | $DMENU |
 
 while read key; do
