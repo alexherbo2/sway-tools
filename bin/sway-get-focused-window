@@ -1,3 +1,7 @@
 #!/bin/sh
 
+# Returns the focused window in the layout tree.
+#
+# → Window
+
 swaymsg -t get_tree | jq '.. | select(.focused?)'

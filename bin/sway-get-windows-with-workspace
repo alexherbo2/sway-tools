@@ -1,5 +1,9 @@
 #!/bin/sh
 
+# Returns windows with their associated workspace in the layout tree.
+#
+# → Array({ Window, Workspace })
+
 swaymsg -t get_tree | jq '
   [
     ( .. | select(.type? == "workspace") ) as $workspace |

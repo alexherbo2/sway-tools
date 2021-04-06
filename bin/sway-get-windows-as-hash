@@ -1,5 +1,11 @@
 #!/bin/sh
 
+# Returns a hash of windows with their associated workspace in the layout tree.
+#
+# → Hash(String, { Window, Workspace })
+#
+# Where String is: "{workspace.name}\t{window.name}\t{window.marks}\t{window.id}"
+
 sway-get-windows-with-workspace | jq '
   map({ key: ([.workspace.name, .window.name, .window.marks[], .window.id] | join("\t")), value: . }) | from_entries
 '
