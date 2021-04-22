@@ -1,0 +1,17 @@
+#!/bin/sh
+
+# A spiral tiling layout.
+#
+# Usage:
+#
+# sway-spiral
+#
+# Examples:
+#
+# bindsym $mod+c exec pkill sway-spiral || sway-spiral
+
+swaymsg --type subscribe --monitor '["window"]' |
+jq --unbuffered 'select(.change == "focus") | .container.rect | if .width > .height then "horizontal" else "vertical" end' |
+while read orientation; do
+  swaymsg split "$orientation"
+done
