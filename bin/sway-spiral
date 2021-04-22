@@ -12,6 +12,7 @@
 
 swaymsg --type subscribe --monitor '["window"]' |
 jq --unbuffered 'select(.change == "focus") | .container.rect | if .width > .height then "horizontal" else "vertical" end' |
+
 while read orientation; do
-  swaymsg split "$orientation"
+  swaymsg split $orientation
 done
