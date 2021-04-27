@@ -4,4 +4,4 @@
 #
 # → Window
 
-swaymsg -t get_tree | jq '.. | select(.focused?)'
+swaymsg --type get_tree | jq '.. | select(.focused?)'

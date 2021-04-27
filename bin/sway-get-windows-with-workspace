@@ -4,7 +4,7 @@
 #
 # → Array({ Window, Workspace })
 
-swaymsg -t get_tree | jq '
+swaymsg --type get_tree | jq '
   [
     ( .. | select(.type? == "workspace") ) as $workspace |
     ( $workspace | .. | select(.pid?) ) as $window |

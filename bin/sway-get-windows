@@ -4,4 +4,4 @@
 #
 # → Array(Window)
 
-swaymsg -t get_tree | jq '[ .. | select(.pid?) ]'
+swaymsg --type get_tree | jq '[ .. | select(.pid?) ]'

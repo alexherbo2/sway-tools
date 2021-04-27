@@ -13,4 +13,4 @@
 # https://wayland.emersion.fr/slurp/
 # https://wayland.emersion.fr/grim/
 
-(swaymsg -t get_tree; swaymsg -t get_outputs) | jq --slurp --raw-output '( .[0] | .. | select(.pid? and .visible?).rect ), ( .[1][].rect ) | "\(.x),\(.y) \(.width)x\(.height)"' | slurp "$@"
+(swaymsg --type get_tree; swaymsg --type get_outputs) | jq --slurp --raw-output '( .[0] | .. | select(.pid? and .visible?).rect ), ( .[1][].rect ) | "\(.x),\(.y) \(.width)x\(.height)"' | slurp "$@"
