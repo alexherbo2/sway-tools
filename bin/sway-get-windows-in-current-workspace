@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# Returns windows in the currently focused workspace in the layout tree.
+#
+# → Array(Window)
+
+export current_workspace_id=$(swaymsg --type get_workspaces | jq '.[] | select(.focused).id')
+swaymsg --type get_tree | jq '
+  [ .. | select(.id? == (env.current_workspace_id | tonumber)) | .. | select(.pid?) ]
+'
