@@ -17,6 +17,5 @@ sway-get-windows-in-current-workspace | jq '.[].id' |
 while read window_id
 do
   swaymsg "[con_id=${window_id}]" focus
-  sleep 0.2
   sway-click "$@"
 done
