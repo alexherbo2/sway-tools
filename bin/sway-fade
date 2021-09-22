@@ -13,29 +13,33 @@
 # Options
 steps=10
 time=0.1
+begin_opacity=0.0
+end_opacity=1.0
 
 # Internal variables
-stride=$(printf '1.0 / %f\n' "$steps" | bc -l)
-wait_duration=$(printf '%f / %f\n' "$time" "$steps" | bc -l)
+stride=$(echo "($end_opacity - $begin_opacity) / $steps" | bc -l)
+wait_duration=$(echo "$time / $steps" | bc -l)
 
-# Main function
-fade() {
-  swaymsg "[con_id=$container_id]" -- opacity set 0
-  for step in $(seq "$steps"); do
+# Functions
+fade_in() {
+  swaymsg "[con_id=$container_id]" -- opacity set "$begin_opacity"
+  seq "$steps" |
+  while read step; do
     swaymsg "[con_id=$container_id]" -- opacity plus "$stride"
     sleep "$wait_duration"
   done
-  swaymsg "[con_id=$container_id]" -- opacity set 1
+  swaymsg "[con_id=$container_id]" -- opacity set "$end_opacity"
 }
 
 # Events
-listen() {
+fade_in_on_new_window() {
   swaymsg --type subscribe --monitor '["window"]' |
-  jq --unbuffered 'select(.change == "focus") | .container.id' |
+  jq --unbuffered 'select(.change == "new") | .container.id' |
 
+  # Add listener with context:
   while read container_id; do
-    fade < /dev/null > /dev/null 2>&1 &
+    fade_in < /dev/null > /dev/null 2>&1 &
   done
 }
 
-listen
+fade_in_on_new_window
