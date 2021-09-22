@@ -22,24 +22,39 @@ wait_duration=$(echo "$time / $steps" | bc -l)
 
 # Functions
 fade_in() {
-  swaymsg "[con_id=$container_id]" -- opacity set "$begin_opacity"
+  criteria=$1
+
+  swaymsg "$criteria" -- opacity set "$begin_opacity"
   seq "$steps" |
   while read step; do
-    swaymsg "[con_id=$container_id]" -- opacity plus "$stride"
+    swaymsg "$criteria" -- opacity plus "$stride"
     sleep "$wait_duration"
   done
-  swaymsg "[con_id=$container_id]" -- opacity set "$end_opacity"
+  swaymsg "$criteria" -- opacity set "$end_opacity"
 }
 
 # Events
 fade_in_on_new_window() {
   swaymsg --type subscribe --monitor '["window"]' |
-  jq --unbuffered 'select(.change == "new") | .container.id' |
+  jq --unbuffered --compact-output 'select(.change == "new")' |
 
   # Add listener with context:
-  while read container_id; do
-    fade_in < /dev/null > /dev/null 2>&1 &
+  while read properties; do
+    fade_in '[con_id=__focused__]' &
   done
 }
 
-fade_in_on_new_window
+fade_in_on_changed_workspace() {
+  swaymsg --type subscribe --monitor '["workspace"]' |
+  jq --unbuffered --compact-output 'select(.change == "focus" and .current.output == .old.output)' |
+
+  # Add listener with context:
+  while read properties; do
+    fade_in '[workspace=__focused__]' &
+  done
+}
+
+# Add event listeners:
+fade_in_on_new_window &
+fade_in_on_changed_workspace &
+wait
