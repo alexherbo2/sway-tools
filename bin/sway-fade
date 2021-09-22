@@ -1,0 +1,41 @@
+#!/bin/sh
+
+# A tool to fade windows.
+#
+# Usage:
+#
+# sway-fade
+#
+# Configuration:
+#
+# exec sway-fade
+
+# Options
+steps=10
+time=0.1
+
+# Internal variables
+stride=$(printf '1.0 / %f\n' "$steps" | bc -l)
+wait_duration=$(printf '%f / %f\n' "$time" "$steps" | bc -l)
+
+# Main function
+fade() {
+  swaymsg "[con_id=$container_id]" -- opacity set 0
+  for step in $(seq "$steps"); do
+    swaymsg "[con_id=$container_id]" -- opacity plus "$stride"
+    sleep "$wait_duration"
+  done
+  swaymsg "[con_id=$container_id]" -- opacity set 1
+}
+
+# Events
+listen() {
+  swaymsg --type subscribe --monitor '["window"]' |
+  jq --unbuffered 'select(.change == "focus") | .container.id' |
+
+  while read container_id; do
+    fade < /dev/null > /dev/null 2>&1 &
+  done
+}
+
+listen
