@@ -46,7 +46,7 @@ fade_in_on_new_window() {
 
 fade_in_on_changed_workspace() {
   swaymsg --type subscribe --monitor '["workspace"]' |
-  jq --unbuffered --compact-output 'select(.change == "focus" and .current.output == .old.output)' |
+  jq --unbuffered --compact-output 'select(.change == "focus" and .current.output == .old.output and (.current.nodes | length) > 0)' |
 
   # Add listener with context:
   while read properties; do
