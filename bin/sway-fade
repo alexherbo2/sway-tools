@@ -50,7 +50,7 @@ fade_in_on_changed_workspace() {
 
   # Add listener with context:
   while read workspace_current_name; do
-    fade_in "[workspace=^${workspace_current_name}$]" &
+    fade_in "[workspace=\"^${workspace_current_name}\$\"]" &
   done
 }
 
