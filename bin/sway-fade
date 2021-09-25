@@ -36,21 +36,21 @@ fade_in() {
 # Events
 fade_in_on_new_window() {
   swaymsg --type subscribe --monitor '["window"]' |
-  jq --unbuffered --compact-output 'select(.change == "new")' |
+  jq --unbuffered --compact-output 'select(.change == "new") | .container.id' |
 
   # Add listener with context:
-  while read properties; do
-    fade_in '[con_id=__focused__]' &
+  while read container_id; do
+    fade_in "[con_id=$container_id]" &
   done
 }
 
 fade_in_on_changed_workspace() {
   swaymsg --type subscribe --monitor '["workspace"]' |
-  jq --unbuffered --compact-output 'select(.change == "focus" and .current.output == .old.output and (.current.nodes | length) > 0)' |
+  jq --unbuffered --compact-output 'select(.change == "focus" and .current.output == .old.output and (.current.nodes | length) > 0) | .current.name' |
 
   # Add listener with context:
-  while read properties; do
-    fade_in '[workspace=__focused__]' &
+  while read workspace_current_name; do
+    fade_in "[workspace=^${workspace_current_name}$]" &
   done
 }
 
